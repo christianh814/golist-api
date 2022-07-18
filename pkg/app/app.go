@@ -25,6 +25,8 @@ func Start() {
 	cors := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
 		AllowCredentials: true,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		//Debug:            true,
 	})
 
 	// set router handler
