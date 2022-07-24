@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: golist-api
+  name: golist-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golist-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: golist-api
+    spec:
+      containers:
+      - image: quay.io/christianh814/golist-api
+        name: golist-api
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/appconfig
+        resources: {}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: golist-api-config
