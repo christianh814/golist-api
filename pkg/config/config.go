@@ -20,7 +20,7 @@ func LoadConfig() error {
 	log.Info("Loading config...")
 
 	// use Viper to load the config
-	viper.AddConfigPath(".")
+	viper.AddConfigPath("./appconfig")
 	viper.SetConfigName("config")
 	viper.SetConfigType("json")
 
