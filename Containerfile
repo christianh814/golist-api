@@ -14,8 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/golist-api /app/golist-api
 
-COPY --from=build /app/html /app/html
-
 EXPOSE 8080
 
 USER 1001
