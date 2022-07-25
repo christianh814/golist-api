@@ -37,10 +37,7 @@ func checkIfProductExists(productId string) bool {
 	db.Instance.First(&product, productId)
 
 	// If the product is found, return true.
-	if product.ID == 0 {
-		return false
-	}
-	return true
+	return product.ID != 0
 }
 
 // GetProductById gets a product by its ID
@@ -49,7 +46,7 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 
 	// If the id is not found in the product table, send "Product Not Found!"
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		json.NewEncoder(w).Encode("Product Not Found!")
 		return
 	}
@@ -83,7 +80,7 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 
 	// checks if the passed product Id actually exists in the product table
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		json.NewEncoder(w).Encode("Product Not Found!")
 		return
 	}
@@ -109,7 +106,7 @@ func DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	// Extracts the id to be deleted from the request URL.
 	productId := mux.Vars(r)["id"]
 	// Checks if the ID is actually available in the product table.
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode("Product Not Found!")
 		return
