@@ -20,6 +20,7 @@ func Start() {
 	router.HandleFunc("/api/products", CreateProduct).Methods("POST")
 	router.HandleFunc("/api/products/{id}", UpdateProduct).Methods("PUT")
 	router.HandleFunc("/api/products/{id}", DeleteProduct).Methods("DELETE")
+	router.HandleFunc("/healthz", ReturnHealth)
 
 	// Set cors setting
 	cors := cors.New(cors.Options{

@@ -2,6 +2,7 @@ package app
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/christianh814/golist-api/pkg/db"
@@ -122,4 +123,26 @@ func DeleteProduct(w http.ResponseWriter, r *http.Request) {
 
 	// encode the product variable and send it back to the client.
 	json.NewEncoder(w).Encode("Product Deleted Successfully!")
+}
+
+// Return OK status
+func ReturnHealth(w http.ResponseWriter, r *http.Request) {
+	// Write the status code
+	w.WriteHeader(200)
+
+	// set header type
+	w.Header().Set("Content-Type", "application/json")
+
+	// write the message
+	resp := make(map[string]string)
+	resp["status"] = "OK"
+
+	// encode the response report any errors
+	jsonResp, err := json.Marshal(resp)
+	if err != nil {
+		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	}
+
+	// write response
+	w.Write(jsonResp)
 }
