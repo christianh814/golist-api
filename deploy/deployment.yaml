@@ -18,7 +18,7 @@ spec:
         app: golist-api
     spec:
       containers:
-      - image: quay.io/christianh814/golist-api
+      - image: quay.io/christianh814/golist-api:latest
         name: golist-api
         livenessProbe:
           httpGet:
