@@ -22,14 +22,14 @@ spec:
         name: golist-api
         livenessProbe:
           httpGet:
-            path: /health
+            path: /healthz
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 3
         readinessProbe:
           httpGet:
-            path: /health
+            path: /healthz
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 10
