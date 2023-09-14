@@ -23,7 +23,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2.12
       with:
         image: golist-api
-        tags: latest ${{ steps.vars.outputs.image_tag }}
+        tags: latest ${{ steps.set-vars.outputs.image_tag }}
         containerfiles: |
           ./Containerfile
 
